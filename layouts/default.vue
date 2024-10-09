@@ -4,19 +4,19 @@ const { logout } = useAuthViewModel();
 const links = [
     {
         type: 'link',
-        ico: 'fi-rr-apps',
+        ico: 'uil uil-create-dashboard',
         label: 'dashboard',
         link: 'account/home',
     },
     {
         type: 'link',
-        ico: 'fi-ts-users',
+        ico: 'uil uil-user',
         label: 'Employees',
         link: 'account/employee',
     },
     {   
         type:'link',
-        ico: 'fi-ts-function-process',
+        ico: 'uil uil-sliders-v',
         label: 'Settings',
         link: 'account/setting',
         // children: [
@@ -33,7 +33,7 @@ const links = [
 
     {   
         type: 'link',
-        ico: 'fi-ts-users',
+        ico: 'uil uil-analytics',
         label: 'Rapports',
         link: 'account/rapport',
     }
@@ -87,7 +87,7 @@ const setOpen = (state : boolean) => {
                     <li class="item" v-for="(item, index) in links" :key="index">
                         <template v-if="item.type =='link'">
                             <NuxtLink class="link" :to="`/${item.link}`">
-                                <i class="fi " :class="item.ico"></i>
+                                <i :class="item.ico"></i>
                                 <span>{{ item.label }}</span>
                             </NuxtLink>
                         </template>

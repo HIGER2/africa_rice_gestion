@@ -25,8 +25,10 @@ export const useFetching = async ({ uri = '',resType='', methods = 'GET', header
       if (success) success(res?.data);  // Vérifiez si success est défini avant d'appeler
 
   } catch (errors: any) {
-      if (errors.response?.data?.message ==  "Unauthenticated.") {
-        localStorage.removeItem('user');
+    if (errors.response?.data?.message == "Unauthenticated.") {
+      const {removeCookie} =useCookies()
+      removeCookie('token')
+        // localStorage.removeItem('user');
         navigateTo('/auth/login')
       }
       if (error) error(errors.response);  // Vérifiez si error est défini avant d'appeler
