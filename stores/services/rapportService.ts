@@ -9,7 +9,7 @@ export const  useRapportService = defineStore('rapportService', () => {
             let response: any | null = null;
             let erreur: any | null = null;  
                 await useFetching({
-                    uri: `/rapport/all/employee/by/filter/${q}`,
+                    uri: `/rapport/all/employee/by/filter${q}`,
                     success: async (res) => {
                         response = res.response.map((employee:EmployeeType) => new Employee(employee));
                     },

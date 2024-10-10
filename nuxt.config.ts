@@ -12,6 +12,13 @@ export default defineNuxtConfig({
       }
     }
   },
+   router: {
+    options: {
+       hashMode: true,
+      scrollBehaviorType: 'smooth'
+
+    }
+  },
   app: {
     head: {
        link: [

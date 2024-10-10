@@ -18,7 +18,8 @@
     "axios": "^1.7.7",
     "file-saver": "^2.0.5",
     "js-cookie": "^3.0.5",
-    "nuxt": "^3.13.0",
+    "nitropack": "^2.9.7",
+    "nuxt": "^3.13.2",
     "pinia": "^2.2.2",
     "vue": "latest",
     "vue-router": "latest"
