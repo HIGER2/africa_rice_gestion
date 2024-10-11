@@ -9,7 +9,7 @@ export const baseURL = axios.create({
   // timeout: 1000,
   headers: {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json', 
   }
 });
 

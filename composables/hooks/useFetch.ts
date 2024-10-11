@@ -3,11 +3,12 @@ import type {UseFetchingParams } from "~/composables"
 
 
 
-export const useFetching = async ({ uri = '',resType='', methods = 'GET', header = {}, body = {}, success, error }: UseFetchingParams) => {
+export const useFetching = async ({ uri = '',resType='', methods = 'GET', header = {},param={}, body = {}, success, error }: UseFetchingParams) => {
   const options = {
     url: uri,
     method: methods,
     headers: { ...header },
+    params:{...param},
     data: body,
     responseType: resType,
     onUploadProgress: function (progressEvent: any) {

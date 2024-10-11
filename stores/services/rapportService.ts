@@ -5,11 +5,11 @@ import type { EmployeeType, NewEmployeeType } from '~/composables';
 
 export const  useRapportService = defineStore('rapportService', () => {
     // const useUtils =useUtilsStores()
-    async function getAllEmployeeFilter(q:string) {
+    async function getAllEmployeeFilter(q:string="") {
             let response: any | null = null;
             let erreur: any | null = null;  
                 await useFetching({
-                    uri: `/rapport/all/employee/by/filter${q}`,
+                    uri: `/rapport/all/employee/by/filter${q ? "/"+q : ""}`,
                     success: async (res) => {
                         response = res.response.map((employee:EmployeeType) => new Employee(employee));
                     },
@@ -27,7 +27,7 @@ export const  useRapportService = defineStore('rapportService', () => {
             let response: any | null = null;
             let erreur: any | null = null;  
                 await useFetching({
-                    uri: `/rapport/export/employee${q && '/' + q}/${date && '/' + date}`,
+                    uri: `/rapport/export/employee${q ? '/' + q : ""}${date ? '/' + date : ""}`,
                     resType:"blob",
                     success: async (res) => {
                         

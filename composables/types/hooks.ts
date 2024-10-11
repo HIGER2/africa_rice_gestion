@@ -19,6 +19,7 @@ export interface ApiError {
 
 export interface UseFetchingParams {
   uri: string;
+  param?: any| null;  // Remplacez `any` par le type réel de votre body si connu
   methods?: 'GET' | 'POST' | 'PUT' | 'DELETE';  // Ajoutez d'autres méthodes HTTP si nécessaire
   header?: Record<string, string> ;
   body?: any| null;  // Remplacez `any` par le type réel de votre body si connu
