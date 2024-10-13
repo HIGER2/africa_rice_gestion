@@ -1,1 +1,0 @@
-import{_ as o}from"./B0nO8USS.js";import{f as t,P as n,o as a,c,b as _}from"./2-DysmS7.js";const i=t({__name:"index",setup(r){return n("account/home"),(s,m)=>{const e=o;return a(),c("div",null,[_(e)])}}});export{i as default};
