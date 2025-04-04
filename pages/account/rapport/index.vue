@@ -15,38 +15,44 @@ type ItemType = {
   };
 
 const columns = [
-  { label: 'Res No', key: 'matricule' },
-  { label: 'Employee ID', key: 'employeeId' },
-  { label: 'Staff Name', key: 'staffName' },
-  { label: 'Email', key: 'email' },
-  { label: 'Job Title', key: 'jobTitle' },
-  { label: 'Supervisor', key: 'supervisor' },
-  { label: 'Role', key: 'role' }
+    { label: 'Matricule', key: 'matricule' },
+    { label: 'name', key: 'name' },
+    { label: 'Lastname', key: 'lastname' },
+    { label: 'Supervisor', key: 'supervisor' },
+//   { label: 'Employee ID', key: 'employeeId' },
+    { label: 'Division', key: 'division' },
+//   { label: 'Email', key: 'email' },
+    { label: 'Job Title', key: 'jobTitle' },
+//   { label: 'Supervisor', key: 'supervisor' },
+//   { label: 'Role', key: 'role' }
 ]
 
 
 const itemFilter: ItemType[] = [
-    { label: "staffs who have submitted their objectives", value: 1 },
-    { label: "staffs who have not submitted", value: 2 },
-    { label: "staffs whose objectives have been approved", value: 3 },
-    { label: "staffs whose objectives have been rejected", value: 4 },
-    { label: "staff who have submitted their evaluation", value: 5 },
-    { label: "staff who have not submitted their evaluation", value: 6 },
-    { label: "staffs whose evaluations have been finalized", value: 7 },
-    { label: "staffs whose evaluations have not been finalized", value: 8 },
+    { label: "Liste staff objectifs soumis", value: 1 },
+    { label: "staff non soumis", value: 2 },
+    { label: "Objectifs Approuvé", value: 3 },
+    { label: "Liste Self objectif review soumis", value: 4 },
+    { label: "List  Self objectif evaluation approuvé", value: 5 },
+    { label: "Evaluation non soumis", value: 6 },
+    { label: "Objectifs non approuvé", value: 7 },
+    { label: "Objectifs soumis non approuvé", value: 8 },
 ];
 
 
 const getEmployee = async (q:string = '') => {
     await useRapport.getAllEmployeeFilter(q)
     employeeList.value = useRapport.rapportEmployee.map((employee: EmployeeType) => ({
-    matricule: employee.matricule, 
-    employeeId: employee.employeeId.toString(),
-    staffName: employee.firstName +" "+ employee.lastName, // Vous pouvez ajouter une logique pour générer le nom complet
-    email: employee.email,
-    jobTitle: employee.role, // Supposons que role est le titre de poste
-    supervisor:employee.supervisor ? employee.supervisor?.firstName+" "+ employee.supervisor?.lastName : "N/A",
-    role: employee.role.charAt(0).toUpperCase() + employee.role.slice(1) // Capitaliser la première lettre du rôle
+        matricule: employee.matricule, 
+     // employeeId: employee.employeeId.toString(),
+        name: employee.firstName,
+        lastname: employee.lastName,
+        // Vous pouvez ajouter une logique pour générer le nom complet
+    // email: employee.email,
+    jobTitle: employee.jobTitle, // Supposons que role est le titre de poste
+    division: employee.phone2,
+    supervisor : employee.supervisorLastName+" "+ employee.supervisorFirstName ,
+    // role: employee.role.charAt(0).toUpperCase() + employee.role.slice(1) // Capitaliser la première lettre du rôle
 }));
 
 }
@@ -84,12 +90,12 @@ onMounted(() => {
                         placeholder="Search staff"
                         name="jobTitle"
                         /> -->
-                        <UiFormSelect
-                            :options="itemFilter"
-                            name="jobTitle"
-                            :placeholder="filter ? 'View all' : 'filter by ' "
-                            v-model="filter"
-                        />
+                            <UiFormSelect
+                                :options="itemFilter"
+                                    name="jobTitle"
+                                    :placeholder="filter ? 'Liste Staff' : 'filter by ' "
+                                    v-model="filter"
+                            />
                             <!-- @change="onSelectChange" -->
                         <button class="btn"
                         @click="handelExportEmployee(filter)"

@@ -5,6 +5,8 @@ export interface EmployeeType {
   email: string;
   supervisor: EmployeeType;
   personalEmail: string;
+  supervisorFirstName: string;
+  supervisorLastName: string;
   phone2: string;
   phone: string;
   address: string;

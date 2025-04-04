@@ -6,25 +6,30 @@ const isOpen = ref(false)
 const useEmployee = useEmployeeViewModel();
 
 const columns = [
-  { label: 'Res No', key: 'matricule' },
+    { label: 'Matricule', key: 'matricule' },
+    { label: 'Name', key: 'name' },
+    { label: 'Lastname', key: 'lastname' },
+    { label: 'Supervisor', key: 'supervisor' },
 //   { label: 'Employee ID', key: 'employeeId' },
-  { label: 'Staff Name', key: 'staffName' },
-  { label: 'Email', key: 'email' },
-  { label: 'Job Title', key: 'jobTitle' },
-  { label: 'Supervisor', key: 'supervisor' },
-  { label: 'Role', key: 'role' }
+    { label: 'Division', key: 'division' },
+//   { label: 'Email', key: 'email' },
+    { label: 'Job Title', key: 'jobTitle' },
+//   { label: 'Supervisor', key: 'supervisor' },
+//   { label: 'Role', key: 'role' }
 ]
 let employeeList = ref([]);
 const getEmployee = async () => {
     await useEmployee.getAllEmployee()
      employeeList.value = useEmployee.employee.map((employee: EmployeeType) => ({
-    matricule: employee.matricule, 
-    employeeId: employee.employeeId.toString(),
-    staffName: employee.firstName +" "+ employee.lastName, // Vous pouvez ajouter une logique pour générer le nom complet
-    email: employee.email,
-    jobTitle: employee.role, // Supposons que role est le titre de poste
-    supervisor:employee.supervisor ? employee.supervisor?.firstName+" "+ employee.supervisor?.lastName : "N/A",
-    role: employee.role.charAt(0).toUpperCase() + employee.role.slice(1) // Capitaliser la première lettre du rôle
+   matricule: employee.matricule, 
+     // employeeId: employee.employeeId.toString(),
+        name: employee.firstName,
+        lastname: employee.lastName,
+        // Vous pouvez ajouter une logique pour générer le nom complet
+    // email: employee.email,
+    jobTitle: employee.jobTitle, // Supposons que role est le titre de poste
+    division: employee.phone2,
+    supervisor : employee.supervisorLastName+" "+ employee.supervisorFirstName ,
 }));
 
 }
