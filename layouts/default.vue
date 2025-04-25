@@ -2,34 +2,34 @@
 
 const { logout } = useAuthViewModel();
 const links = [
-    {
-        type: 'link',
-        ico: 'uil uil-create-dashboard',
-        label: 'dashboard',
-        link: 'account/home',
-    },
-    {
-        type: 'link',
-        ico: 'uil uil-user',
-        label: 'Employees',
-        link: 'account/employee',
-    },
-    {   
-        type:'link',
-        ico: 'uil uil-sliders-v',
-        label: 'Settings',
-        link: 'account/setting',
-        // children: [
-        //     {
-        //         label: "eveluation",
-        //         link: 'account/setting/eveluation',
-        //     },
-        //     {
-        //         label: "eveluation",
-        //         link: 'account/setting/eveluation',
-        //     }
-        // ]
-    },
+    // {
+    //     type: 'link',
+    //     ico: 'uil uil-create-dashboard',
+    //     label: 'dashboard',
+    //     link: 'account/home',
+    // },
+    // {
+    //     type: 'link',
+    //     ico: 'uil uil-user',
+    //     label: 'Employees',
+    //     link: 'account/employee',
+    // },
+    // {   
+    //     type:'link',
+    //     ico: 'uil uil-sliders-v',
+    //     label: 'Settings',
+    //     link: 'account/setting',
+    //     // children: [
+    //     //     {
+    //     //         label: "eveluation",
+    //     //         link: 'account/setting/eveluation',
+    //     //     },
+    //     //     {
+    //     //         label: "eveluation",
+    //     //         link: 'account/setting/eveluation',
+    //     //     }
+    //     // ]
+    // },
 
     {   
         type: 'link',

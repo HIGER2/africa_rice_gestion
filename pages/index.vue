@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-navigateTo('account/home')
+navigateTo('account/rapport')
 </script>
 <template>
     <div>
