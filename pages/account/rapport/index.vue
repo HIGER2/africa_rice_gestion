@@ -16,7 +16,7 @@ type ItemType = {
 
 const columns = [
     { label: 'Matricule', key: 'matricule' },
-    { label: 'name', key: 'name' },
+    { label: 'Name', key: 'name' },
     { label: 'Lastname', key: 'lastname' },
     { label: 'Supervisor', key: 'supervisor' },
 //   { label: 'Employee ID', key: 'employeeId' },
@@ -43,7 +43,7 @@ const itemFilter: ItemType[] = [
 const getEmployee = async (q:string = '') => {
     await useRapport.getAllEmployeeFilter(q)
     employeeList.value = useRapport.rapportEmployee.map((employee: EmployeeType) => ({
-        matricule: employee.matricule, 
+    matricule: employee.matricule, 
      // employeeId: employee.employeeId.toString(),
         name: employee.firstName,
         lastname: employee.lastName,

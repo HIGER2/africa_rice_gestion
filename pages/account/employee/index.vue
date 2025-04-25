@@ -80,7 +80,8 @@ function onRowClick(item: Record<string, any>, index: number) {
                     </div>
                     <UiDynamicTable
                     :rowClick="onRowClick" 
-                    :columns="columns" :data="employeeList" />
+                    :columns="columns" 
+                    :data="employeeList" />
                 </div>
             </div>
         </NuxtLayout>
