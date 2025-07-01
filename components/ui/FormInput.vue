@@ -25,7 +25,7 @@ watch(inputValue, (newValue) => {
 
 <template>
   <div class="mt-4 flex w-full flex-col justify-start gap-1">
-    <label :for="name" class="text-[13px] font-[500] text-zinc-700">
+    <label :for="name" class="text-[13px] text-left font-[500] text-zinc-700">
       {{ label }}
     </label>
     <input
