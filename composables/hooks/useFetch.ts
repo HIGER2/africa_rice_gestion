@@ -18,7 +18,6 @@ export const useFetching = async ({ uri = '',resType='', methods = 'GET', header
     onDownloadProgress: function (progressEvent: any) {
       // Progress bar logic
     },
-
   };
 
   try {

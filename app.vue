@@ -20,8 +20,8 @@
 
   text-decoration: none;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  // margin: 0;
+  // padding: 0;
   box-sizing: border-box;
   outline: none;
 }

@@ -17,7 +17,7 @@ const handleLogin = async () => {
     <section class="login">
         <div class="container">
             <div class="login-form">
-                <div class="card flex w-[380px] flex-col items-center gap-1 rounded-md border border-zinc-200 bg-white p-8  shadow-sm">
+                <div class="flex w-[380px] flex-col items-center gap-1 rounded-md border border-zinc-200 bg-white p-8 text-center shadow-sm">
                     <div class="logo">
                         <img src="https://mycareer.africarice.org/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fafricarice.b93af9cc.webp&w=1080&q=75" alt="Logo" class="logo">
                     </div>

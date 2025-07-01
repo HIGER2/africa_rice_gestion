@@ -1,16 +1,24 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+// /** @type {import('tailwindcss').Config} */
+
+module.exports = {
+  darkMode: false,
+  
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
-    "./app.vue",
-    "./error.vue",
+    "./nuxt.config.{js,ts}",
+    "./app.vue"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+      }
+    },
   },
-  plugins: [],
+  // plugins: [require("daisyui")],
+  // daisyui: {
+  //   themes: false, // désactive tous les thèmes
+  // },
 }
-

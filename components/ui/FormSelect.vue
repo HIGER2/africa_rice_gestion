@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4 flex w-full flex-col justify-start gap-1">
+  <div class=" flex w-full flex-col justify-start gap-1">
     <label class="text-[13px] font-md text-zinc-700" v-if="label">{{ label }}</label>
     <select
       :name="name"
@@ -8,7 +8,7 @@
       v-model="selectedValue"
       @change="handleChange"
     >
-      <option  value="">{{ placeholder }}</option>
+      <option  value="" disabled v-if="placeholder">{{ placeholder }}</option>
       <option v-for="(option, index) in options" :key="index" :value="option.value">
         {{ option.label }}
       </option>

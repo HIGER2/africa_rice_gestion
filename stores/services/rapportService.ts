@@ -5,11 +5,12 @@ import type { EmployeeType, NewEmployeeType } from '~/composables';
 
 export const  useRapportService = defineStore('rapportService', () => {
     // const useUtils =useUtilsStores()
-    async function getAllEmployeeFilter(q:string="") {
+    async function getAllEmployeeFilter(query:any) {
             let response: any | null = null;
             let erreur: any | null = null;  
                 await useFetching({
-                    uri: `/rapport/all/employee/by/filter${q ? "/"+q : ""}`,
+                    uri: `/rapport/all/employee/by/filter`,
+                    param: {...query},
                     success: async (res) => {
                         response = res.response.map((employee:EmployeeType) => new Employee(employee));
                     },

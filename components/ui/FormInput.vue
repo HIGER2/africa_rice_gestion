@@ -29,12 +29,13 @@ watch(inputValue, (newValue) => {
       {{ label }}
     </label>
     <input
-      :id="name"
-      v-model="inputValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      class="w-full rounded-md border border-zinc-200 p-3 px-3 text-xs font-sm outline-none transition-all placeholder:text-zinc-300 hover:border-zinc-500 focus:border-brand focus:outline-brand-light disabled:text-zinc-500"
-      type="text"
-    />
+    :id="name"
+    v-model="inputValue"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    class="w-full rounded-md  border border-zinc-200 p-3 px-3 text-xs font-sm outline-none transition-all placeholder:text-zinc-300 hover:border-zinc-500 focus:border-brand focus:outline-brand-light disabled:text-zinc-500"
+    type="text"
+  />
+
   </div>
 </template>
