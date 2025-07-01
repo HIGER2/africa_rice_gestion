@@ -50,6 +50,7 @@
 const menuItems = [
   {
     label: 'Recrutement',
+    icon:"uil uil-newspaper",
     children: [
       { label: 'Gestion  dossier', link: '#' ,icon:"uil uil-create-dashboard" },
       { label: 'Panélistes', link: '#' ,icon:"uil uil-create-dashboard" },
@@ -80,6 +81,7 @@ const menuItems = [
   // },
   {
     label: 'Gestion du personnel',
+    icon:"uil uil-book-reader",
     children: [
       { label: 'Gestion collaborateur', link: '#' },
       // { label: 'Modifier infos par domaine', link: '/personnel/modifier' },
@@ -90,6 +92,7 @@ const menuItems = [
   },
   {
     label: 'Contrat & Administration',
+    icon:"uil uil-file-contract",
     children: [
       { label: 'Gestions contrats', link: '#' , icon:"uil uil-create-dashboard" },
       { label: 'Générer un courrier', link: '#' },
@@ -100,6 +103,7 @@ const menuItems = [
   },
   {
     label: 'Performmance',
+    icon:"uil uil-tachometer-fast-alt",
     children: [
       // { label: 'Gestions o', link: '/admin-courriers/modeles' },
       // { label: 'Générer un courrier', link: '/admin-courriers/generer' },
@@ -121,16 +125,19 @@ const toggle = (index: number) => {
 
 
 <template>
-   <aside class="w-full bg-white  p-4 ">
+   <aside class="w-full bg-white  p-2 ">
     <div v-for="(item, index) in menuItems" :key="index" class="w-full">
       <button
         @click="toggle(index)"
         class="w-full flex cursor-pointer items-center text-[11px] text-black font-bold  justify-between px-2 py-2 text-sm hover:bg-gray-100 rounded-md"
       >
-        <span class="uppercase ">{{ item.label }}</span>
+        <div class="flex items-center gap-1">
+          <i :class="item.icon" class="text-[17px] text-gray-600 "></i>
+          <span class="uppercase ">{{ item.label }}</span>
+        </div>
         <span>{{ openIndex[index] ? '−' : '+' }}</span>
       </button>
-      <ul v-show=" openIndex[index]" class="mt-1  space-y-1 transition-all ml-2">
+      <ul v-show=" openIndex[index]" class="mt-1  space-y-1 transition-all ml-3">
         <li
           v-for="(child, i) in item.children"
           :key="i"

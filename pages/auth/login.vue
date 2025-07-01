@@ -19,7 +19,7 @@ const handleLogin = async () => {
             <div class="login-form">
                 <div class="flex w-[380px] flex-col items-center gap-1 rounded-md border border-zinc-200 bg-white p-8 text-center shadow-sm">
                     <div class="logo">
-                        <img src="https://mycareer.africarice.org/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fafricarice.b93af9cc.webp&w=1080&q=75" alt="Logo" class="logo">
+                         <img src="~assets/images/logo.webp" alt="" class="w-40">
                     </div>
                     <h2>Sign in</h2>
                     <p class="text-center text-zinc-500 text-sm">Sign into your staff account to get access to our platform.</p>
