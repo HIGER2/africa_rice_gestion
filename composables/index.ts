@@ -8,3 +8,4 @@ export type { ApiResponse, ApiError, UseFetchingParams } from "./types/hooks"
 export { useFetching } from './hooks/useFetch';
 export { useCookies } from './hooks/useCookie';
 export { baseURL } from "./axios"
+export { useXlsx } from './hooks/useXlsx';

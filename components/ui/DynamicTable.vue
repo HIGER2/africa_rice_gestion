@@ -24,6 +24,11 @@
         </tr>
       </tbody>
     </table>
+    <div class="w-full">
+      <p v-if="data.length === 0" class="text-center text-zinc-400 p-4">
+        Aucune donnée disponible
+      </p>
+    </div>
   </div>
 </template>
 

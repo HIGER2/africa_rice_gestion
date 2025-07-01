@@ -1,18 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
   // compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr:false,
+  css: ['~/assets/css/main.css'],
   vite: {
+    plugins: [
+      tailwindcss(),
+    ],
     css: {
       preprocessorOptions: {
         scss: {
           additionalData: '@use "~/assets/_colors.scss" as *;'
         }
       }
-    }
+    },
+   
   },
-   router: {
+  router: {
     options: {
        hashMode: true,
       scrollBehaviorType: 'smooth'
@@ -21,7 +28,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-       meta: [
+      meta: [
       { charset: 'UTF-8' }, // Encodage des caractères
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }, // Pour la responsivité
     ],
@@ -33,14 +40,17 @@ export default defineNuxtConfig({
     }
   },
 
-  css: ['~/assets/css/main.css'],
-   postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
-  modules: ['@nuxt/ui', '@pinia/nuxt'],
+  
+  //  postcss: {
+  //   plugins: {
+  //     tailwindcss: {},
+  //     autoprefixer: {},
+  //   },
+  // },
+   
+  modules: [
+    '@nuxt/ui',
+    '@pinia/nuxt'],
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },

@@ -2,34 +2,50 @@
 
 const { logout } = useAuthViewModel();
 const links = [
-    // {
-    //     type: 'link',
-    //     ico: 'uil uil-create-dashboard',
-    //     label: 'dashboard',
-    //     link: 'account/home',
-    // },
-    // {
-    //     type: 'link',
-    //     ico: 'uil uil-user',
-    //     label: 'Employees',
-    //     link: 'account/employee',
-    // },
-    // {   
-    //     type:'link',
-    //     ico: 'uil uil-sliders-v',
-    //     label: 'Settings',
-    //     link: 'account/setting',
-    //     // children: [
-    //     //     {
-    //     //         label: "eveluation",
-    //     //         link: 'account/setting/eveluation',
-    //     //     },
-    //     //     {
-    //     //         label: "eveluation",
-    //     //         link: 'account/setting/eveluation',
-    //     //     }
-    //     // ]
-    // },
+    {
+        type: 'link',
+        ico: 'uil uil-create-dashboard',
+        label: 'dashboard',
+        link: 'account/home',
+    },
+    {
+        type: 'button',
+        ico: 'uil uil-create-dashboard',
+        label: 'Gestion personel',
+        link: 'account/home',
+        children: [
+            {
+                label: "eveluation",
+                link: 'account/setting/eveluation',
+            },
+            {
+                label: "eveluation",
+                link: 'account/setting/eveluation',
+            }
+        ]
+    },
+    {
+        type: 'link',
+        ico: 'uil uil-user',
+        label: 'Employees',
+        link: 'account/employee',
+    },
+    {   
+        type:'link',
+        ico: 'uil uil-sliders-v',
+        label: 'Settings',
+        link: 'account/setting',
+        children: [
+            {
+                label: "eveluation",
+                link: 'account/setting/eveluation',
+            },
+            {
+                label: "eveluation",
+                link: 'account/setting/eveluation',
+            }
+        ]
+    },
 
     {   
         type: 'link',
@@ -48,13 +64,13 @@ const setOpen = (state : boolean) => {
 
 <template>
     <main>
-            <nav class="navbar border-b border-zinc-200 z-50 sticky top-0 flex items-center justify-between w-full gap-8 px-8 bg-white shadow-sm select-none h-14">
+            <nav class="navbar z-50 border-b border-zinc-200  sticky flex top-0 py-3 items-center justify-between w-full  px-4 bg-white ">
                 <div class="itemlef">
                      <div class="logo">
                         <img src="~assets/images/logo.webp" alt="">
                     </div>
                 </div>
-                <div class="itemRight">
+                <div class="itemRight cursor-pointers">
                     <div class="user">
                         <button type="button"
                         @click="setOpen(!isOpen)"
@@ -77,13 +93,15 @@ const setOpen = (state : boolean) => {
                     </div>
                 </div>
             </nav>
-            <section class="sidebar bg-white border-r border-zinc-200 shadow-sm">
+            <section class="sidebar bg-white border-r border-zinc-200 overflow-y-auto ">
+                    <LayoutsMenuComponent/>
+
                 <!-- <header class="header">
                     <div class="logo">
                         <img src="~assets/images/logo.webp" alt="">
                     </div>
                 </header> -->
-                <ul class="navitems">
+                <!-- <ul class="navitems">
                     <li class="item" v-for="(item, index) in links" :key="index">
                         <template v-if="item.type =='link'">
                             <NuxtLink class="link" :to="`/${item.link}`">
@@ -96,9 +114,9 @@ const setOpen = (state : boolean) => {
                                 <i class="fi " :class="item.ico"></i>
                                 <span>{{ item.label }}</span>
                             </button>
-                            <ul class="sousnav">
-                                <li class="itemsous" v-for="(item, index) in item.children" :key="index">
-                                    <NuxtLink class="link" :to="`/${item.link}`">
+                            <ul class="ml-[25px]">
+                                <li class="w-full" v-for="(item, index) in item.children" :key="index">
+                                    <NuxtLink class="text-[14px]" :to="`/${item.link}`">
                                         <i class="fi " :class="item.ico"></i>
                                         <span>{{ item.label }}</span>
                                     </NuxtLink>
@@ -106,7 +124,7 @@ const setOpen = (state : boolean) => {
                             </ul>
                         </template>
                     </li>
-                </ul>
+                </ul> -->
             </section>
             <section class="main-content">
                 <!-- <nav class="navbar">
@@ -151,11 +169,11 @@ main{
         }
     }
     .navbar{
-        width: 100%;
-        z-index: 10;
-        height: 60px;
-        background-color: $white;
-        padding: 10px 20px;
+        // width: 100%;
+        // z-index: 10;
+        // height: 60px;
+        // background-color: $white;
+        // padding: 10px 20px;
         .user{
             display: flex;
             height: 2.25rem;
@@ -218,10 +236,9 @@ main{
         }
     }
     .sidebar{
-    width: 230px;
+    width: 250px;
     height: calc(100vh - 60px);
     position: fixed;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: all 0.4s ease-in-out;
@@ -238,46 +255,10 @@ main{
             }
         }
     }
-   .sousnav,.navitems{
-        width: 100%;
-        padding: 10px;
-        .item{
-            width: 100%;
-            // margin: 1px 0;
-            .link{
-                width: 100%;
-                display:  inline-flex;
-                align-items: center;
-                padding: 0.5rem;
-                border-radius: $rounded-md;
-                border: 1px solid transparent;
-                font-size: 0.80rem;
-                font-weight: 550;
-                color: $zinc-700;
-                    /* text-zinc-500 */
-                span{
-                    
-                    &::first-letter {
-                            text-transform: capitalize;
-                        }
-                }
-                i{
-                    margin-right: 10px;
-                    font-size: 1rem;
-                }
-                &:hover {
-                    background-color: $zinc-200;
-                    // color: $primary_md;
-                    // border-color: $primary_md;
-                }
-            }
-            
-        }
-    }
 }
     .main-content{
-        width: calc(100% - 230px);
-        left: 230px;
+        width: calc(100% - 250px);
+        left: 250px;
         position: relative;
         min-height: 100vh;
         // background-color: $white;

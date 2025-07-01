@@ -4,15 +4,19 @@ import type { EmployeeType } from '~/composables';
 import { useEmployeeViewModel } from '~/stores/viewmodels/employeeViewModels';
 import { useRapportViewModel } from '~/stores/viewmodels/rapportViewModels';
 
-
 const useRapport = useRapportViewModel();
-const filter = ref();
+const filters = reactive({
+  year: new Date().getFullYear(),
+  status: "",
+});
 let employeeList = ref([]);
 
 type ItemType = {
     value: number;
     label: string;
   };
+
+
 
 const columns = [
     { label: 'Matricule', key: 'matricule' },
@@ -40,8 +44,17 @@ const itemFilter: ItemType[] = [
 ];
 
 
-const getEmployee = async (q:string = '') => {
-    await useRapport.getAllEmployeeFilter(q)
+const itemYear = [
+    { label: "2023", value: 2023 },
+    { label: "2024", value: 2024 },
+    { label: "2025", value: 2025 },
+];
+
+
+const getEmployee = async () => {
+    let queryParams ={...filters};
+    console.log(queryParams);
+    await useRapport.getAllEmployeeFilter(queryParams)
     employeeList.value = useRapport.rapportEmployee.map((employee: EmployeeType) => ({
     matricule: employee.matricule, 
      // employeeId: employee.employeeId.toString(),
@@ -58,14 +71,15 @@ const getEmployee = async (q:string = '') => {
 }
 
 
-const handelExportEmployee = async (q: string = '', date: string = '') => {
-    await useRapport.exportEmployee(q,date) 
+watch(() => filters, () => {
+    getEmployee()
+}, { deep: true ,immediate: true ,flush: 'pre'});
+
+const handelExportEmployee = async (columns, data) => {
+
+    useXlsx(data,columns)
+    // await useRapport.exportEmployee(q,date) 
 }
-
-
-watch(() => filter.value, (value:string) => {
-    getEmployee(value)
-})
 
 
 onMounted(() => {
@@ -92,13 +106,18 @@ onMounted(() => {
                         /> -->
                             <UiFormSelect
                                 :options="itemFilter"
-                                    name="jobTitle"
-                                    :placeholder="filter ? 'Liste Staff' : 'filter by ' "
-                                    v-model="filter"
+                                name="jobTitle"
+                                :placeholder="filter ? 'Liste Staff' : 'filter by ' "
+                                v-model="filters.status"
+                            />
+                            <UiFormSelect
+                                :options="itemYear"
+                                name="jobTitle"
+                                v-model="filters.year"
                             />
                             <!-- @change="onSelectChange" -->
                         <button class="btn"
-                        @click="handelExportEmployee(filter)"
+                        @click="handelExportEmployee(columns,employeeList)"
                         >
                             Export
                             <i class="uil uil-export"></i>

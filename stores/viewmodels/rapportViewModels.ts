@@ -6,8 +6,8 @@ export const useRapportViewModel = defineStore('RapportViewModel', () => {
     const rapportService = useRapportService()
     const rapportEmployee = ref();
 
-    async function getAllEmployeeFilter(q:string){
-        const { response, erreur } = await rapportService.getAllEmployeeFilter(q);
+    async function getAllEmployeeFilter(query:any) {
+        const { response, erreur } = await rapportService.getAllEmployeeFilter(query);
         if (!erreur) {
             rapportEmployee.value = response
         }
