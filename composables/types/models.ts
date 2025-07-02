@@ -23,6 +23,17 @@ export interface EmployeeType {
 }
 
 
+export interface RapportStaffType {
+    matricule: string;
+    employeeLastName: string;
+    employeeFirstName: string;
+    title: string;
+    supervisorFirstName: string;
+    supervisorLastName: string;
+    division: string;
+    year?:string | null;
+  }
+
 export interface NewEmployeeType {
   role: string;
   email: string;

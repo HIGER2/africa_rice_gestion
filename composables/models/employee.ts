@@ -1,4 +1,4 @@
-import type { EmployeeType, UpdateEmployeeType, UserConnectedType } from "../types/models";
+import type { EmployeeType, RapportStaffType, UpdateEmployeeType, UserConnectedType } from "../types/models";
 
 
 export class Employee {
@@ -144,5 +144,37 @@ export class UpdateEmployee {
     this.matricule = matricule;
     this.deletedAt = deletedAt;
     this.secretKey = secretKey;
+  }
+}
+
+export class RapportStaff{
+  matricule: string;
+  firstName: string;
+  lastName: string;
+  title: string;
+  supervisorFirstName: string;
+  supervisorLastName: string;
+  division: string;
+  year?: string | null;
+  constructor({
+    matricule,
+    employeeLastName,
+    employeeFirstName,
+    title,
+    supervisorLastName,
+    supervisorFirstName,
+    division,
+    year = null,
+  }:RapportStaffType ) {
+    this.matricule = matricule;
+    this.firstName = employeeLastName;
+    this.lastName = employeeFirstName;
+    this.title =title;
+    this.supervisorFirstName = supervisorFirstName;
+    this.supervisorLastName = supervisorLastName;
+    this.division = division;
+    if (typeof year !== 'undefined' && year !== null) {
+      this.year = year;
+    }
   }
 }
