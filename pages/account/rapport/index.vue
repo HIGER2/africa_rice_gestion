@@ -7,29 +7,16 @@ import { useRapportViewModel } from '~/stores/viewmodels/rapportViewModels';
 const useRapport = useRapportViewModel();
 const filters = reactive({
   year: new Date().getFullYear(),
-  status: "",
+  status: 1,
 });
 let employeeList = ref([]);
 
 type ItemType = {
     value: number;
     label: string;
-  };
+};
 
 
-
-const columns = [
-    { label: 'Matricule', key: 'matricule' },
-    { label: 'Name', key: 'name' },
-    { label: 'Lastname', key: 'lastname' },
-    { label: 'Supervisor', key: 'supervisor' },
-//   { label: 'Employee ID', key: 'employeeId' },
-    { label: 'Division', key: 'division' },
-//   { label: 'Email', key: 'email' },
-    { label: 'Job Title', key: 'jobTitle' },
-//   { label: 'Supervisor', key: 'supervisor' },
-//   { label: 'Role', key: 'role' }
-]
 
 
 const itemFilter: ItemType[] = [
@@ -44,6 +31,20 @@ const itemFilter: ItemType[] = [
 ];
 
 
+const itemFilterNew: ItemType[] = [
+    { label: "Liste Staff", value: 1 },
+    { label: "Liste staff objectifs soumis", value: 2 },
+    { label: "staff non soumis", value: 3 },
+    { label: "Objectifs Approuvé", value: 4 },
+
+    { label: "Liste Self objectif review soumis", value: 5 },
+    { label: "List  Self objectif evaluation approuvé", value: 6 },
+    { label: "Evaluation non soumis", value: 7 },
+    { label: "Objectifs non approuvé", value: 8 },
+    { label: "Objectifs soumis non approuvé", value: 9 },
+];
+
+
 const itemYear = [
     { label: "2023", value: 2023 },
     { label: "2024", value: 2024 },
@@ -54,19 +55,21 @@ const itemYear = [
 const getEmployee = async () => {
     let queryParams ={...filters};
     console.log(queryParams);
-    await useRapport.getAllEmployeeFilter(queryParams)
-    employeeList.value = useRapport.rapportEmployee.map((employee: EmployeeType) => ({
-    matricule: employee.matricule, 
-     // employeeId: employee.employeeId.toString(),
-        name: employee.firstName,
-        lastname: employee.lastName,
-        // Vous pouvez ajouter une logique pour générer le nom complet
-    // email: employee.email,
-    jobTitle: employee.jobTitle, // Supposons que role est le titre de poste
-    division: employee.phone2,
-    supervisor : employee.supervisorLastName+" "+ employee.supervisorFirstName ,
-    // role: employee.role.charAt(0).toUpperCase() + employee.role.slice(1) // Capitaliser la première lettre du rôle
-}));
+    await useRapport.getRapportStaff(queryParams)
+    console.log(useRapport.rapportEmployee);
+    
+    // employeeList.value = useRapport.rapportEmployee.map((employee: EmployeeType) => ({
+    // matricule: employee.matricule, 
+    //  // employeeId: employee.employeeId.toString(),
+    //     name: employee.firstName,
+    //     lastname: employee.lastName,
+    //     // Vous pouvez ajouter une logique pour générer le nom complet
+    // // email: employee.email,
+    // jobTitle: employee.jobTitle, // Supposons que role est le titre de poste
+    // division: employee.phone2,
+    // supervisor : employee.supervisorLastName+" "+ employee.supervisorFirstName ,
+    // // role: employee.role.charAt(0).toUpperCase() + employee.role.slice(1) // Capitaliser la première lettre du rôle
+    // }));
 
 }
 
@@ -82,7 +85,7 @@ const handelExportEmployee = async (columns, data) => {
 }
 
 
-onMounted(() => {
+onBeforeMount(() => {
     getEmployee()
     // console.log(getEmployee);
 })
@@ -96,6 +99,7 @@ onMounted(() => {
             <div class="content">
                 <div class="header">
                     <h5>Rapport</h5>
+                    <!-- {{ useRapport.rapportEmployee.length }}  -->
                     <!-- <NuxtLink to="employee/add" class="btnadd">Add employee <i class="fi fi-sr-plus"></i></NuxtLink> -->
                 </div>
                 <div class="content-table">
@@ -105,7 +109,7 @@ onMounted(() => {
                         name="jobTitle"
                         /> -->
                             <UiFormSelect
-                                :options="itemFilter"
+                                :options="itemFilterNew"
                                 name="jobTitle"
                                 :placeholder="filter ? 'Liste Staff' : 'filter by ' "
                                 v-model="filters.status"
@@ -117,15 +121,17 @@ onMounted(() => {
                             />
                             <!-- @change="onSelectChange" -->
                         <button class="btn"
-                        @click="handelExportEmployee(columns,employeeList)"
+                        @click="handelExportEmployee(useRapport.buildColumns(useRapport.rapportEmployee),useRapport.rapportEmployee)"
                         >
                             Export
                             <i class="uil uil-export"></i>
                         </button>
                     </div>
                     
-                    <UiDynamicTable
-                    :columns="columns" :data="employeeList" />
+                    <div class="w-full">
+                        <UiDynamicTable
+                    :columns="useRapport.buildColumns(useRapport.rapportEmployee)" :data="useRapport.rapportEmployee" />
+                    </div>
                 </div>  
             </div>
         </NuxtLayout>
@@ -136,7 +142,7 @@ onMounted(() => {
 .content{
     width: 100%;
     min-height: 100px;
-       .btnadd{
+    .btnadd{
             padding: 0.5rem 1rem;
             display: flex;
             justify-content: center;
