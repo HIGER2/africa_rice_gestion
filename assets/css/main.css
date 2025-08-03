@@ -1,2 +1,13 @@
+
 @import "@nuxt/ui";
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #1BB258;
+}
+
+@layer components{
+  .btns{
+    @apply !min-w-max !w-full !p-3 !cursor-pointer !px-4 flex justify-center relative !border border-transparent disabled:bg-green-500/50 disabled:shadow-none disabled:text-white disabled:border-transparent items-center text-xs font-semibold gap-1 transition-all shadow-sm active:scale-95 disabled:select-none !rounded-md bg-green-500 text-zinc-50 hover:bg-green-600
+  }
+}

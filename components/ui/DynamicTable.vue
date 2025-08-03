@@ -1,10 +1,11 @@
 <template>
-  <div class=" w-full overflow-x-auto overflow-y-auto max-h-[400px] border bg-white border-gray-200 sticky top[68px]">
+  <div class=" w-full overflow-x-auto rounded-lg overflow-y-auto max-h-[800px] border bg-white border-gray-200 sticky top[68px]">
     <table class="border-collapse min-w-max w-full ">
       <!-- En-tête dynamique -->
-      <thead class="border-b border-zinc-100 uppercase bg-white text-[10px]  bg-sidebar sticky z-10 top-0 ">
+      <thead class="border-b bg-white border-gray-200 borde-b  text-black font-black uppercase text-[11px]  bg-sidebar sticky z-10 top-0 ">
         <tr>
-          <th v-for="(column, index) in columns" :key="index" class="p-2 text-left bg-white" 
+          <th v-for="(column, index) in columns" :key="index" 
+          class="font-black text-left p-4" 
           
           :class="[
             index === 0 ? 'sticky left-0  w-[150px] z-[5]' : '',
@@ -22,7 +23,7 @@
         <tr
           v-for="(item, rowIndex) in data"
           :key="rowIndex"
-          class="text-zinc-500 font-[100] border-b border-zinc-100 cursor-pointer hover:bg-zinc-50"
+          class="text-zinc-500 font-[100] border border-zinc-100 cursor-pointer hover:bg-zinc-50"
           @click="handleRowClick(item, rowIndex)"
         >
           <td v-for="(column, colIndex) in columns" :key="colIndex" class="p-2" 
@@ -33,14 +34,14 @@
                 // colIndex === 2 ? 'sticky left-[300px] z-[5] w-[150px]' : ''
               ]"
           >
-            {{ item[column.key] }}
+            {{ item[column.key] || "N/A" }}
           </td>
         </tr>
       </tbody>
     </table>
     
     <div class="w-full">
-      <p v-if="data.length === 0" class="text-center text-zinc-400 p-4">
+      <p v-if="data.length === 0" class="text-center text-[12px] text-zinc-400 p-4">
         Aucune donnée disponible
       </p>
     </div>
@@ -87,12 +88,11 @@ table {
 
 }
 thead th {
-  padding: 20px 10px;
   text-align: left;
 }
 tbody tr td {
-  padding: 15px 15px;
-  font-size: 12px;
+  padding: 12px 12px;
+  font-size: 11px;
   text-align: left;
   word-wrap: break-word; 
 overflow-wrap: break-word;

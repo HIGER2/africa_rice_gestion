@@ -4,6 +4,7 @@ import type { EmployeeType, RapportStaffType, UpdateEmployeeType, UserConnectedT
 export class Employee {
   employeeId: number;
   role: string;
+  uuid:string;
   email: string;
   supervisor: any;
   personalEmail: string;
@@ -26,6 +27,7 @@ export class Employee {
     employeeId,
     role,
     email,
+    uuid,
     supervisor,
     personalEmail,
     phone2,
@@ -45,6 +47,7 @@ export class Employee {
     secretKey,
   }: EmployeeType) {
     this.employeeId = employeeId;
+    this.uuid=uuid,
     this.role = role;
     this.email = email;
     this.supervisorFirstName = supervisorFirstName;
@@ -130,6 +133,94 @@ export class UpdateEmployee {
     this.role = role;
     this.email = email;
     this.supervisor = supervisor?.email;
+    this.personalEmail = personalEmail;
+    this.phone2 = phone2;
+    this.phone = phone;
+    this.address = address;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.password = password;
+    this.jobTitle = jobTitle;
+    this.category = category;
+    this.grade = grade;
+    this.bgLevel = bgLevel;
+    this.matricule = matricule;
+    this.deletedAt = deletedAt;
+    this.secretKey = secretKey;
+  }
+}
+
+export type ExtendedUpdateEmployeeType = UpdateEmployeeType & {
+  dependents?: Array<any> | null;
+  emergency_contacts?: Array<any> | null;
+  beneficiaries?: Array<any> | null;
+  contract?: object | null;
+  payroll?: object | null;
+  position?: object | null;
+};
+
+export class DetailEmployee {
+  employeeId?: number | null;
+  role: string;
+  email: string;
+  personalEmail?: string | null;
+  phone2?: string | null;
+  phone?: string | null;
+  address?: string | null;
+  firstName: string;
+  lastName: string;
+  password: string;
+  jobTitle: string;
+  category?: string | null;
+  grade?: string | null;
+  bgLevel?: string | null;
+  matricule: string;
+  deletedAt?: string | null;
+  secretKey?: string | null;
+  supervisor?: object | null;
+  dependents?:Array<any> | null;
+  emergency_contacts?:Array<any> | null;
+  beneficiaries?:Array<any> | null;
+  contract?: object | null;
+  payroll?:object | null;
+  position?:object | null;
+  constructor({
+    employeeId=null,
+    role,
+    email,
+    supervisor = null,
+    personalEmail = null,
+    phone2 = null,
+    phone = null,
+    address = null,
+    firstName,
+    lastName,
+    password,
+    jobTitle,
+    category = null,
+    grade = null,
+    bgLevel = null,
+    matricule,
+    deletedAt = null,
+    secretKey = null,
+    dependents,
+    emergency_contacts,
+    beneficiaries,
+    contract,
+    payroll,
+    position,
+  }:ExtendedUpdateEmployeeType
+) {
+    this.employeeId = employeeId;
+    this.role = role;
+    this.email = email;
+    this.supervisor = supervisor;
+    this.dependents = dependents;
+    this.emergency_contacts = emergency_contacts;
+    this.beneficiaries = beneficiaries;
+    this.contract = contract;
+    this.payroll = payroll;
+    this.position = position;
     this.personalEmail = personalEmail;
     this.phone2 = phone2;
     this.phone = phone;

@@ -3,6 +3,7 @@ export interface EmployeeType {
   employeeId: number;
   role: string;
   email: string;
+  uuid:string;
   supervisor: EmployeeType;
   personalEmail: string;
   supervisorFirstName: string;
