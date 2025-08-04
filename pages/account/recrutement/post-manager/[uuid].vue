@@ -37,7 +37,6 @@ const handleDetail=async()=>{
 
 
 const handle=async()=>{
-
  let response  =await store.createOrUpdate(data.value)
 }
 
@@ -65,7 +64,7 @@ onBeforeMount(()=>{
                         </span>
                         <button 
                         @click="close(true)"
-                        type="button"  class="btns max-w-max bg-white text-black border border-gray-300">
+                        type="button"  class="btns max-w-max !bg-white !text-black border border-gray-300">
                         <span> edit</span>
                         <i class="uil uil-pen"></i>
                         </button>

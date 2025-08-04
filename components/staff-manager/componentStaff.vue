@@ -63,6 +63,7 @@ onMounted(() => {
 const setOpen = (state:boolean) => {
     isOpen.value =state
 }
+
 function onRowClick(item: Record<string, any>, index: number) {
     console.log(item);
     navigateTo(`/account/staff-manager/staff/${item?.uuid}`)

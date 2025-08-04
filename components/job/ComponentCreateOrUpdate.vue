@@ -41,7 +41,7 @@ const handelAction=async()=>{
                     />
                   </div>
                   <div class="flex w-full mt-4 items-center justify-end gap-2">
-                    <button type="button" @click="close" class="btns max-w-max bg-white text-black border border-gray-300">
+                    <button type="button" @click="close" class="btns max-w-max !bg-white !text-black border border-gray-300">
                       Cancel
                     </button>
                     <div>

@@ -5,7 +5,7 @@
       <thead class="border-b bg-white border-gray-200 borde-b  text-black font-black uppercase text-[11px]  bg-sidebar sticky z-10 top-0 ">
         <tr>
           <th v-for="(column, index) in columns" :key="index" 
-          class="font-black text-left p-4" 
+          class="font-black bg-white text-left p-4" 
           
           :class="[
             index === 0 ? 'sticky left-0  w-[150px] z-[5]' : '',

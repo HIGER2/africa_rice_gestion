@@ -34,7 +34,7 @@ const employeeFieldLabels = [
   { key: 'country_of_residence', label: 'Country of Residence' },
   { key: 'town_of_residence', label: 'Town of Residence' },
   { key: 'phone', label: 'Phone' },
-  { key: 'email', label: 'Email' },
+  { key: 'personal_email', label: 'Personal email' },
   { key: 'marital_status', label: 'Marital Status' },
   { key: 'number_of_children', label: 'Number of Children' },
   { key: 'family_living_with_staff', label: 'Family Living With Staff' },
@@ -48,7 +48,8 @@ const employeeFieldLabels = [
 <template>
   <div class="w-full">
     <!-- <pre>{{ props.item }}</pre> -->
-     <div v-if="item?.employee"  class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-2xl">
+     <div v-if="item?.employee"  class="max-w-4xl mx-auto  p-6 bg-white rounded-2xl">
+
     <div v-if="item" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
       <div v-for="field in employeeFieldLabels" :key="field.key">
         <strong class="text-[12px]">{{ field.label }}:</strong>

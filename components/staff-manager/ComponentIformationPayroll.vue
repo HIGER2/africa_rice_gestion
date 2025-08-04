@@ -51,7 +51,7 @@ const handleSubmit=async()=>{
       <!-- <h5 class="!text-[13px]">Information Payroll</h5> -->
         <button 
         @click="setOpen(true)"
-        type="button"  class="btns max-w-max bg-white text-black border border-gray-300">
+        type="button"  class="btns max-w-max !bg-white !text-black border border-gray-300">
           <span> edit</span>
           <i class="uil uil-pen"></i>
         </button>

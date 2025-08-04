@@ -98,7 +98,7 @@ function formatBoolean(value: boolean | number| null | undefined): string {
 
           <div>
             <span class="font-medium text-gray-900">Email:</span>
-            {{ format(user.email) }}
+            {{ format(user.personal_email) }}
           </div>
 
           <div>
@@ -108,7 +108,7 @@ function formatBoolean(value: boolean | number| null | undefined): string {
 
           <div>
             <span class="font-medium text-gray-900">Spouse Works:</span>
-            {{ formatBoolean(user.spouse_works) }}
+            {{ format(user.spouse_works) }}
           </div>
 
           <div>
@@ -118,7 +118,7 @@ function formatBoolean(value: boolean | number| null | undefined): string {
 
           <div>
             <span class="font-medium text-gray-900">Family Lives with Staff:</span>
-            {{ formatBoolean(user.family_living_with_staff) }}
+            {{ format(user.family_living_with_staff) }}
           </div>
 
           <div>

@@ -1,16 +1,28 @@
 <script setup lang="ts">
+import { StaffManagerComponentStaff, StaffManagerComponentStaffDraft } from '#components';
+
 
 
 const tabs= ref([
-    { label: 'List of staff', active: false },
-    { label: 'List of inscrition', active: true }
+    { label: 'List of staff', active: 1 },
+    { label: 'List of inscrition', active: 2 }
 ]);
 
+const isActive =ref(1)
 const toggleTab = (index: number) => {
-    tabs.value.forEach((tab, i) => {
-        tab.active = i === index;
-    });
+     isActive.value =index
 };
+
+// const toggleTab = (index: number) => {
+//     tabs.value.forEach((tab, i) => {
+//         tab.active = i === index;
+//     });
+// };
+
+const component: Record<number, Component> ={
+    1: StaffManagerComponentStaff,
+    2: StaffManagerComponentStaffDraft,
+}
 
 </script>
 <template>
@@ -23,33 +35,34 @@ const toggleTab = (index: number) => {
         </UModal> -->
             <div class="content">
                 <div class="header">
-                    <h5>Employee</h5>
-                    <div class="flex items-center gap-2">
+                    <h5>staff management</h5>
+                    <!-- <div class="flex items-center gap-2">
                         <staff-manager-register-link-component/>
-                        <!-- <button type="button" @click="setOpen(true)" 
-                        class="btnadd cursor-pointer">Send link <i class="uil uil-link"></i></button> -->
                         <button type="button" 
                         class="btnadd cursor-pointer">Nouveau <i class="fi fi-sr-plus"></i></button>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="w-full flex mt-5 justify-between font-medium  text-base cursor-pointer items-center  border-b border-zinc-200 ">
+                <div class=" rounded-md overflow-hidden  bg-white border  max-w-max  flex mt-5 justify-between font-medium  text-base cursor-pointer items-center  border-b border-zinc-200 ">
                     <button 
                     v-for="(tab, index) in tabs"
-                    @click="toggleTab(index)"
+                    @click="toggleTab(tab.active)"
                     :class="[
-                       'w-full cursor-pointer text-[12px] text-center p-2 hover:bg-gray-100 transition-all duration-200 ease-in-out',
-                        tab.active ? 'border-b-2 border-black text-black font-bold' : 'text-gray-500'
+                       ' px-10 py-3 cursor-pointer text-[12px] text-center p-2  transition-all duration-200 ease-in-out',
+                        tab.active == isActive ? 'borsder-b-2 bsorder-black bg-primary text-white font-bold' : 'text-black'
                     ]">
                     {{ tab.label }}
                     </button>
                 </div>
-                <template v-if="tabs[0].active">
+                <KeepAlive>
+                    <component :is="component[isActive]"/>
+                </KeepAlive>
+                <!-- <template v-if="tabs[0].active">
                     <StaffManagerComponentStaff/>
                 </template>
 
                 <template v-if="tabs[1].active">
                     <StaffManagerComponentStaffDraft/>
-                </template>
+                </template> -->
             </div>
         </NuxtLayout>
     </div>

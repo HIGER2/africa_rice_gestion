@@ -10,7 +10,6 @@ const store=useJobViewModel()
 
 let form =reactive({...store.fieldsInit})
 
-
 const handleAll=async()=>{
   await store.all();
 
@@ -31,21 +30,24 @@ onBeforeMount(()=>{
   <div>
    <NuxtLayout >
           <div class="w-full">
+           <!-- <pre> {{ store.jobs }}</pre> -->
               <div class=" w-full flex mb-4 justify-between items-center">
-                  <h5>Post manager</h5>
+                  <h5>Job management</h5>
                   <div class="flex items-center gap-2">
                       <button type="button" 
                       class="btns" @click="close(true)">
-                      Add new post <i class="fi fi-sr-plus"></i></button>
+                      Add new job <i class="fi fi-sr-plus"></i></button>
                   </div>
               </div>
               <div class="w-full min-h-screen">
+                    <JobComponentTable :item="store.jobs"/>
+
                   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     <!-- {{  }} -->
                     <!-- Job Card -->
-                     <template v-for="item in store.jobs">
+                     <!-- <template v-for="item in store.jobs">
                         <JobComponentJobCard :item="item"/>
-                     </template>
+                     </template> -->
 
                     <!-- Répéter les autres cartes ici comme Motion Graphic, SEO Specialist, etc. -->
 

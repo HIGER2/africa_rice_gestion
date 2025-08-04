@@ -1,6 +1,6 @@
 <template>
   <div class="mt-4 flex w-full flex-col justify-start gap-1">
-    <label :for="id" class="text-[11px] font-medium text-zinc-800">
+    <label :for="id" class="text-[13px] font-medium text-zinc-800">
       {{ label }}
     </label>
     <input
@@ -9,7 +9,7 @@
       autocomplete="off"
       autocorrect="off"
       spellcheck="false"
-      class="mt-1 disabled:bg-zinc-50 text-zinc-800 font-medium placeholder:text-[9px] placeholder:text-gray-400 text-[12px] w-full rounded-md border border-zinc-200 p-2 px-3  outline-none transition-all  hover:border-green-500 focus:border-brand focus:border-green-500 disabled:text-zinc-500"
+      class="mt-1 disabled:bg-zinc-50 text-zinc-800  placeholder:text-[11px] placeholder:text-gray-400 text-[13px] w-full rounded-md border border-zinc-200 p-2 px-3  outline-none transition-all  hover:border-green-500 focus:border-brand focus:border-green-500 disabled:text-zinc-500"
       v-model="inputValue"
     />
   </div>

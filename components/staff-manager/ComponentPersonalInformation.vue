@@ -125,7 +125,7 @@ function copyToClipboard(text: string) {
 
            <div>
             <span class="font-medium text-gray-900">personal email:</span>
-            {{ format(data.personalEmail) }}
+            {{ format(data.personal_email) }}
           </div>
 
           <div>

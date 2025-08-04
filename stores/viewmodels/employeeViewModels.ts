@@ -80,7 +80,7 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         { label: 'ID recrutement', key: 'recrutement_id' },
         { label: 'Name', key: 'firstName' },
         { label: 'Lastname', key: 'lastName' },
-        { label: 'email', key: 'email' },
+        { label: 'email', key: 'personal_email' },
         { label: 'phone', key: 'phone' },
     ]
 
@@ -111,11 +111,30 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
             ],
             [
                 { key: 'salary_taxes', label: 'Salary Taxes', placeholder: 'Enter Salary Taxes', type: 'number' },
-                { key: 'home_leave', label: 'Home Leave', placeholder: 'Enter Home Leave', type: 'text' },
+                { key: 'home_leave',
+                    component: 'select',
+                options:[
+                        { label: 'Yes', value: 'yes' },
+                        { label: 'No', value: 'no' }
+                    ],
+                    label: 'Home Leave', placeholder: 'Enter Home Leave', type: 'text' },
             ],
             [
-                { key: 'flight_ticket', label: 'Flight Ticket', placeholder: 'Enter Flight Ticket', type: 'text' },
-                { key: 'installation_assistance', label: 'Installation Assistance', placeholder: 'Enter Installation Assistance', type: 'text' },
+            { key: 'flight_ticket',
+                component: 'select',
+                options:[
+                        { label: 'Yes', value: 'yes' },
+                        { label: 'No', value: 'no' }
+                    ],
+                    label: 'Flight Ticket', placeholder: 'Enter Flight Ticket', type: 'text' },
+                { key: 'installation_assistance', 
+                    
+                component: 'select',
+                options:[
+                        { label: 'Yes', value: 'yes' },
+                        { label: 'No', value: 'no' }
+                    ],    
+                label: 'Installation Assistance', placeholder: 'Enter Installation Assistance', type: 'text' },
             ],
             // [
             //     { key: 'created_at', label: 'Created At', placeholder: 'Creation Date', type: 'datetime-local' },
@@ -298,9 +317,9 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
                 personal_email: 'armand.douma@example.com',
                 marital_status: 'married',
                 number_of_children: 1,
-                family_living_with_staff: false,
+                family_living_with_staff: 'no',
                 family_residence_location: 'abidjan',
-                spouse_works: false,
+                spouse_works: 'no',
                 spouse_workplace: 'abidjan',
         },
         dependent:[...defaultDependent],
@@ -346,8 +365,6 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         }
     }
 
-
-    
     async function createEmployeeDraft() {
         const route = useRoute()
         let items = {
@@ -364,7 +381,14 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
             
         const { response, erreur } = await employeeService.createEmployeeDraft(items);
         if (erreur) {
-            
+            let messages=""
+            if (erreur.data.errors) {
+                messages = Object.values(erreur.data.errors).flat().join('\n');
+            }else{
+                messages = erreur.data.message
+            }
+
+            alert(messages);
             return erreur
         }
         alert('Votre formulaire a été soumis avec succès.')
@@ -377,11 +401,16 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
                 ...employeePayload,
             };
 
-            console.log(items);
-
         const { response, erreur } = await employeeService.updateEmployeeByLink(items);
         if (erreur) {
+            let messages=""
+            if (erreur.data.errors) {
+                messages = Object.values(erreur.data.errors).flat().join('\n');
+            }else{
+                messages = erreur.data.message
+            }
             
+            alert(messages);
             return erreur
         }
         alert('Votre formulaire a été soumis avec succès.')
@@ -400,13 +429,13 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
             return erreur
         }
         alert('Votre formulaire a été soumis avec succès.')
-        toast.add({ title: 'Operation completed successfully' })
+        // toast.add({ title: 'Operation completed successfully' })
         return response
     }
 
-    async function assignPostInStaff(items:any) {
+    async function assignPostToEmployee(items:any) {
             
-        const { response, erreur } = await employeeService.assignPostInStaff(items);
+        const { response, erreur } = await employeeService.assignPostToEmployee(items);
         if (erreur) {
             console.log(erreur?.data?.message);
             alert(erreur?.data?.message)
@@ -426,7 +455,7 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
             return erreur
         }
         alert('Votre formulaire a été soumis avec succès.')
-        toast.add({ title: 'Operation completed successfully' })
+        // toast.add({ title: 'Operation completed successfully' })
         return response
     }
 
@@ -484,7 +513,19 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         if (!erreur) {
             employee.value = response
         }else{
-            alert('An unexpected error occurred. If the issue persists, please contact the ICT support team.')
+            alert(erreur.data.message)
+        }
+    }
+
+      async function replicatePosition(uuid:string) {
+            if (!confirm('Are you sure you want to submit this form?')) {
+                return false; 
+            }
+        const { response, erreur } = await employeeService.replicatePosition(uuid);
+        if (!erreur) {
+            employee.value = response
+        }else{
+            alert(erreur.data.message)
         }
     }
 
@@ -526,7 +567,7 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         return response
     }
 
-     async function findByLink(uuid:string) {
+    async function findByLink(uuid:string) {
         const { data, erreur } = await employeeService.findByLink(uuid);
         const common = Object.keys(data).reduce((acc, key) => {
             if (key in initStaff) {
@@ -594,6 +635,8 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         initPayroll,
         initContract,
         findByLink,
-        updateEmployeeByLink
+        updateEmployeeByLink,
+        assignPostToEmployee,
+        replicatePosition
     }
 })

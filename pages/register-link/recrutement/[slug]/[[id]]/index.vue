@@ -218,14 +218,14 @@ onBeforeMount(()=>{
                                 <label class="flex items-center space-x-2 cursor-pointer">
                                 <input 
                                 v-model="store.employeePayload.user.family_living_with_staff"
-                                type="radio" :value="true" 
+                                type="radio" value="yes" 
                                 class="text-green-600 focus:ring-green-500" />
                                 <span>Yes</span>
                                 </label>
                                 <label class="flex items-center space-x-2 cursor-pointer">
                                 <input 
                                 v-model="store.employeePayload.user.family_living_with_staff"
-                                type="radio" :value="false" 
+                                type="radio" value="no" 
                                 class="text-green-600 focus:ring-green-500" />
                                 <span>No</span>
                                 </label>
@@ -251,13 +251,13 @@ onBeforeMount(()=>{
                                 <label class="flex items-center space-x-2 cursor-pointer">
                                 <input 
                                 v-model="store.employeePayload.user.spouse_works"
-                                type="radio" :value="true"  class="text-green-600 focus:ring-green-500" />
+                                type="radio" value="yes"  class="text-green-600 focus:ring-green-500" />
                                 <span>Yes</span>
                                 </label>
                                 <label class="flex items-center space-x-2 cursor-pointer">
                                 <input 
                                 v-model="store.employeePayload.user.spouse_works"
-                                type="radio" :value="false"  class="text-green-600 focus:ring-green-500" />
+                                type="radio" value="no"  class="text-green-600 focus:ring-green-500" />
                                 <span>No</span>
                                 </label>
                             </div>

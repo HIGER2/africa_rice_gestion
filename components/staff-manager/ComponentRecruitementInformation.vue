@@ -1,7 +1,6 @@
 
 <script lang="ts" setup>
-defineProps(['data'])
-
+const props =defineProps(['data','store','callback'])
 
 const jobFieldLabels = [
   // { key: 'id', label: 'ID' },
@@ -38,6 +37,22 @@ const jobFieldLabels = [
   // { key: 'updated_at', label: 'Updated At' },
 ]
 
+const recrutement_id =ref('')
+const loading =ref(false)
+
+const handleAssingn=async(data)=>{
+  console.log(data?.uuid);
+  
+    let items={
+      uuid:data?.uuid,
+      recrutement_id:recrutement_id.value
+    }
+    loading.value =true
+    await props.store.assignPostToEmployee(items)
+    if (props.callback) await props.callback()
+    loading.value = false
+}
+
 </script>
 
 <template>
@@ -51,7 +66,23 @@ const jobFieldLabels = [
           </div>
         </div>
         <div v-else>
-          <div class="text-center">aucune information disponible</div>
+        <div class="w-2xs mx-auto flex flex-col">
+          <form action=""
+          @submit.prevent="handleAssingn(data)"
+          >
+            <h6>Assign recrutement to this employee</h6>
+              <UiBaseInput
+              v-model="recrutement_id"
+              placeholder="Enter recrutement number"
+              />
+              <div class="mt-3">
+                <UiButtonSubmit
+                :is-loading="loading"
+                label="Assign"
+                />
+              </div>
+          </form>
+         </div>
         </div>
       </div>
   </div>

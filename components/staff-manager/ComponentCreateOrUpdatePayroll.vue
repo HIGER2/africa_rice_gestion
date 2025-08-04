@@ -28,22 +28,30 @@ const handelAction=async()=>{
         <form 
                 @submit.prevent="handelAction"
                 action="">
-                    <div
+                  <div
                     v-for="(pair, index) in inputPairs"
                     :key="index"
                     class="flex items-end gap-2"
                   >
+                   <template  v-for="(input, i) in pair" :key="input.key">
+                    <UiBaseSelect
+                    v-if="input.component === 'select'"
+                    :label="input.label"
+                    :options="input.options"
+                    v-model="payload[input.key]"
+                  />
                     <ui-base-input
-                      v-for="(input, i) in pair"
-                      :key="input.key"
+                        v-else
                       :label="input.label"
                       :type="input.type"
                       :placeholder="input.placeholder"
                       v-model="payload[input.key]"
                     />
+                   </template>
+                    
                   </div>
                   <div class="flex w-full mt-4 items-center justify-end gap-2">
-                    <button type="button" @click="close" class="btns max-w-max bg-white text-black border border-gray-300">
+                    <button type="button" @click="close" class="btns max-w-max !bg-white !text-black border border-gray-300">
                       Cancel
                     </button>
                     <div>

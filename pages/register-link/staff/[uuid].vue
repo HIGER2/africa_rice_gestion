@@ -165,7 +165,7 @@ onBeforeMount(()=>{
                                 <label class="block mb-1">Personal Email</label>
                                 <input 
                                 placeholder="Personal Email"
-                                v-model="store.employeePayload.user.personalEmail"
+                                v-model="store.employeePayload.user.personal_email"
                                 type="email" class="w-full border border-gray-300 rounded-md px-3 py-1.5" />
                             </div>
                         </div>

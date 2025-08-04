@@ -49,10 +49,10 @@
 
 const menuItems = [
   {
-    label: 'Gestion du personnel',
+    label: 'Personnel management',
     icon:"uil uil-book-reader",
     children: [
-      { label: 'Gestion collaborateur', 
+      { label: 'staff management', 
       icon:"uil uil-users-alt",
       link: '/account/staff-manager/staff' },
       // { label: 'Modifier infos par domaine', link: '/personnel/modifier' },
@@ -65,7 +65,7 @@ const menuItems = [
     label: 'Recrutement',
     icon:"uil uil-newspaper",
     children: [
-      { label: 'Post manager', link: '/account/recrutement/post-manager' ,icon:"uil uil-create-dashboard" },
+      { label: 'Job management', link: '/account/recrutement/post-manager' ,icon:"uil uil-create-dashboard" },
       { label: 'Panélistes', link: '#' ,icon:"uil uil-create-dashboard" },
       { label: 'Rapport', link: '#',icon:"uil uil-create-dashboard"  },
       // { label: 'Programmation entretiens', link: '/recrutement/doodle' },

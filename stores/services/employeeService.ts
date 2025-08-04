@@ -93,6 +93,52 @@ export const  useEmployeeService = defineStore('employeeService', () => {
         // return new Task(response.data);
     }
 
+    
+    async function replicatePosition(uuid: string) {
+            let response: any | null = null;
+                let erreur: any | null = null;  
+                await useFetching({
+                    uri: `/employee/replicate/position/${uuid}`,
+                    success: async (res) => {
+                        response = res?.data;
+                        toast.add({ title: 'Operation completed successfully' })
+                    },
+                    error: (err) => {
+                        erreur = err
+                    }
+                })
+                return {
+                    response,
+                    erreur
+            }
+
+    }
+
+    async function assignPostToEmployee(item) {
+            let response: any | null = null;
+                let erreur: any | null = null;  
+                await useFetching({
+                    uri: `/employee/assign/post`,
+                    methods:"POST",
+                    body:item,
+                    success: async (res) => {
+                        response = res?.data;
+                        toast.add({ title: 'Operation completed successfully' })
+                    },
+                    error: (err) => {
+                        erreur = err
+                    }
+                })
+                return {
+                    response,
+                    erreur
+            }
+
+
+        // const response = await apiClient.post('/tasks', data);
+        // return new Task(response.data);
+    }
+
 
     async function createOrUpdatePayroll(item: any) {
             let response: any | null = null;
@@ -113,10 +159,6 @@ export const  useEmployeeService = defineStore('employeeService', () => {
                     response,
                     erreur
             }
-
-
-        // const response = await apiClient.post('/tasks', data);
-        // return new Task(response.data);
     }
     
     async function createOrUpdateContract(item: any) {
@@ -138,10 +180,6 @@ export const  useEmployeeService = defineStore('employeeService', () => {
                     response,
                     erreur
             }
-
-
-        // const response = await apiClient.post('/tasks', data);
-        // return new Task(response.data);
     }
     async function createEmployeeDraft(item: any) {
             let response: any | null = null;
@@ -280,6 +318,8 @@ export const  useEmployeeService = defineStore('employeeService', () => {
         createOrUpdatePayroll,
         createOrUpdateContract,
         findByLink,
-        updateEmployeeByLink
+        updateEmployeeByLink,
+        assignPostToEmployee,
+        replicatePosition
     }
 })
