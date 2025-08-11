@@ -13,6 +13,7 @@ interface TableProps {
 const props = defineProps<TableProps>()
 const loading=ref(false)
 const handelAction=async()=>{
+   if (!confirm('Are you sure you want to submit?'))  return false
     loading.value =true
     await props.action()
     if (props.callback) await props.callback()
@@ -31,14 +32,30 @@ const handelAction=async()=>{
                     :key="index"
                     class="flex items-end gap-2"
                   >
+                  <template  v-for="(input, i) in pair" :key="input.key">
+                    <UiBaseSelect
+                    v-if="input.component === 'select'"
+                    :label="input.label"
+                    :options="input.options"
+                    :placeholder="input.placeholder"
+                    v-model="payload[input.key]"
+                  />
                     <ui-base-input
+                      v-else
+                      :label="input.label"
+                      :type="input.type"
+                      :placeholder="input.placeholder"
+                      v-model="payload[input.key]"
+                    />
+                  </template>
+                    <!-- <ui-base-input
                       v-for="(input, i) in pair"
                       :key="input.key"
                       :label="input.label"
                       :type="input.type"
                       :placeholder="input.placeholder"
                       v-model="payload[input.key]"
-                    />
+                    /> -->
                   </div>
                   <div class="flex w-full mt-4 items-center justify-end gap-2">
                     <button type="button" @click="close" class="btns max-w-max !bg-white !text-black border border-gray-300">

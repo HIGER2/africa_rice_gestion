@@ -6,6 +6,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr:false,
   css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE,
+      appUrl: process.env.APP_URL,
+    },
+
+  },
   vite: {
     plugins: [
       tailwindcss(),

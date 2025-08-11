@@ -49,7 +49,7 @@ function onRowClick(item: Record<string, any>, index: number) {
     <UiDynamicTable
     :rowClick="onRowClick" 
     :columns="columns" 
-    :data="item" />
+    :data="item || []" />
 </template>
 
 <style>

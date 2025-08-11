@@ -70,7 +70,7 @@ const handleSubmit=async()=>{
     :payload="data.payroll_actif || store.initPayroll"
     :inputPairs="store.inputPairsPayroll"
     :action="handleSubmit"
-    title="Information Payroll"
+    title="Edit Payroll"
     :open="open"
     :close="()=>setOpen(false)"
     />

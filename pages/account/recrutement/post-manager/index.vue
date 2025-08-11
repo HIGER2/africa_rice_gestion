@@ -41,7 +41,6 @@ onBeforeMount(()=>{
               </div>
               <div class="w-full min-h-screen">
                     <JobComponentTable :item="store.jobs"/>
-
                   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     <!-- {{  }} -->
                     <!-- Job Card -->
@@ -53,8 +52,6 @@ onBeforeMount(()=>{
 
                   </div>
               </div>
-
-                
                <JobComponentCreateOrUpdate
                :payload="form"
                :inputPairs="store.inputPairs"

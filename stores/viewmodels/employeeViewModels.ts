@@ -1,6 +1,7 @@
 
 import { defineStore } from 'pinia'
 import type { NewEmployeeType, UpdateEmployeeType } from '~/composables';
+import { useUtilsStores } from './../../composables/utils/index';
 
 export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
     const employeeService = useEmployeeService()
@@ -87,7 +88,7 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
     const inputPairsPayroll = [
             [
                 { key: 'basic_salary', label: 'Basic Salary', placeholder: 'Enter Basic Salary', type: 'number' },
-                { key: 'salary_currency', label: 'Salary Currency', placeholder: 'Enter Salary Currency', type: 'number' },
+                { key: 'salary_currency', label: 'Salary Currency', placeholder: 'Enter Salary Currency', type: 'text' },
             ],
             [
                 { key: 'salary_frequency', label: 'Salary Frequency', placeholder: 'Enter Salary Frequency', type: 'text' },
@@ -198,67 +199,67 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         nationality:''
     }
 
-    let defaultDependent=[
-            {
-            employeeId: null,
-            full_name: 'Aminata Douma',
-            relation: 'spouse',
-            gender: 'female',
-            date_of_birth: '2015-06-22',
-            residence_or_school: 'École Sainte Marie, Abidjan',
-            nationality: 'Ivoirienne'
-        },
-        {
-            employeeId: null,
-            full_name: 'Koffi Douma',
-            relation: 'child',
-            gender: 'male',
-            date_of_birth: '2012-09-15',
-            residence_or_school: 'Collège Moderne Cocody',
-            nationality: 'Ivoirienne'
-        }
-        ]
-    let defaultEmergency=[
-              {
-            employeeId: null,
-            name: 'Fatou Koné',
-            relationship: 'Épouse',
-            birthday: '1987-04-12',
-            address: 'Abidjan, Cocody Riviera 2',
-            email: 'fatou.kone@example.com',
-            phone:"0980989808098"
-        },
-        {
-            employeeId: null,
-            name: 'Yao Serge',
-            relationship: 'Frère',
-            birthday: '1990-10-03',
-            address: 'Bouaké, Quartier Kennedy',
-            email: 'yao.serge@example.com',
-            phone:"0980989808098"
-        }
-    ]
-
-    let defaultBeneficiary=[
-         {
+        let defaultDependent=[
+                {
                 employeeId: null,
-                full_name: 'Aminata Traoré',
-                relationship: 'Sœur',
-                birthday: '1992-06-14',
-                address: 'Yopougon, Abidjan',
-                email: 'aminata.traore@example.com',
-                percentage_share: '50'
+                full_name: 'Aminata Douma',
+                relation: 'spouse',
+                gender: 'female',
+                date_of_birth: '2015-06-22',
+                residence_or_school: 'École Sainte Marie, Abidjan',
+                nationality: 'Ivoirienne'
             },
             {
                 employeeId: null,
-                full_name: 'Kouadio Jean',
-                relationship: 'Père',
-                birthday: '1965-02-28',
-                address: 'Daloa, Quartier Commerce',
-                email: 'kouadio.jean@example.com',
-                percentage_share: '50'
+                full_name: 'Koffi Douma',
+                relation: 'child',
+                gender: 'male',
+                date_of_birth: '2012-09-15',
+                residence_or_school: 'Collège Moderne Cocody',
+                nationality: 'Ivoirienne'
             }
-    ]
+            ]
+        let defaultEmergency=[
+                {
+                employeeId: null,
+                name: 'Fatou Koné',
+                relationship: 'Épouse',
+                birthday: '1987-04-12',
+                address: 'Abidjan, Cocody Riviera 2',
+                email: 'fatou.kone@example.com',
+                phone:"0980989808098"
+            },
+            {
+                employeeId: null,
+                name: 'Yao Serge',
+                relationship: 'Frère',
+                birthday: '1990-10-03',
+                address: 'Bouaké, Quartier Kennedy',
+                email: 'yao.serge@example.com',
+                phone:"0980989808098"
+            }
+        ]
+
+        let defaultBeneficiary=[
+            {
+                    employeeId: null,
+                    full_name: 'Aminata Traoré',
+                    relationship: 'Sœur',
+                    birthday: '1992-06-14',
+                    address: 'Yopougon, Abidjan',
+                    email: 'aminata.traore@example.com',
+                    percentage_share: '50'
+                },
+                {
+                    employeeId: null,
+                    full_name: 'Kouadio Jean',
+                    relationship: 'Père',
+                    birthday: '1965-02-28',
+                    address: 'Daloa, Quartier Commerce',
+                    email: 'kouadio.jean@example.com',
+                    percentage_share: '50'
+                }
+        ]
 
     let initEmergency={
         employeeId:null,
@@ -280,51 +281,52 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
 
     let employeePayload = reactive({
         user:{
-            // firstName:'',
-            // lastName:'',
-            // date_of_birth:'',
-            // country_of_birth:'',
-            // gender:'',
-            // nationality_1:'',
-            // nationality_2:'',
-            // indentity_number:'',
-            // social_security_number:'',
-            // permanent_address:'',
-            // country_of_residence:'',
-            // town_of_residence:'',
-            // phone:'',
-            // email:'',
-            // marital_status:'',
-            // number_of_children:0,
-            // family_living_with_staff: false,
-            // family_residence_location:'',
-            // spouse_works:false,
-            // spouse_workplace:'',
-                uuid:null,
-                firstName: 'Armand',
-                lastName: 'Douma',
-                date_of_birth: '1995-04-12',
-                country_of_birth: 'Côte d\'Ivoire',
-                gender: 'Male',
-                nationality_1: 'Ivoirienne',
-                nationality_2: '',
-                indentity_number: 'CI123456789',
-                social_security_number: 'SSN987654321',
-                permanent_address: 'Abidjan, Cocody, Rue des Jasmins',
-                country_of_residence: 'Côte d\'Ivoire',
-                town_of_residence: 'Abidjan',
-                phone: '+2250778618454',
-                personal_email: 'armand.douma@example.com',
-                marital_status: 'married',
-                number_of_children: 1,
-                family_living_with_staff: 'no',
-                family_residence_location: 'abidjan',
-                spouse_works: 'no',
-                spouse_workplace: 'abidjan',
+            uuid:null,
+            firstName:'',
+            lastName:'',
+            date_of_birth:'',
+            country_of_birth:'',
+            gender:'',
+            nationality_1:'',
+            nationality_2:'',
+            indentity_number:'',
+            social_security_number:'',
+            permanent_address:'',
+            country_of_residence:'',
+            town_of_residence:'',
+            phone:'',
+            email:'',
+            marital_status:'',
+            number_of_children:0,
+            family_living_with_staff: false,
+            family_residence_location:'',
+            spouse_works:false,
+            spouse_workplace:'',
+            // uuid:null,
+            // firstName: 'Armand',
+            // lastName: 'Douma',
+            // date_of_birth: '1995-04-12',
+            // country_of_birth: 'Côte d\'Ivoire',
+            // gender: 'Male',
+            // nationality_1: 'Ivoirienne',
+            // nationality_2: '',
+            // indentity_number: 'CI123456789',
+            // social_security_number: 'SSN987654321',
+            // permanent_address: 'Abidjan, Cocody, Rue des Jasmins',
+            // country_of_residence: 'Côte d\'Ivoire',
+            // town_of_residence: 'Abidjan',
+            // phone: '+2250778618454',
+            // personal_email: 'armand.douma@example.com',
+            // marital_status: 'married',
+            // number_of_children: 1,
+            // family_living_with_staff: 'no',
+            // family_residence_location: 'abidjan',
+            // spouse_works: 'no',
+            // spouse_workplace: 'abidjan',
         },
-        dependent:[...defaultDependent],
-        emergency:[ ...defaultEmergency ],
-        beneficiary:[...defaultBeneficiary]
+        dependent:[{...initDependent}],
+    emergency:[ {...initEmergency }],
+        beneficiary:[{...initBeneficiary}]
     })
     let NewEmployeeType = {
         firstName: "",
@@ -375,7 +377,6 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
                 }
             };
 
-            console.log(items);
 
             // return
             
@@ -383,16 +384,19 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         if (erreur) {
             let messages=""
             if (erreur.data.errors) {
-                messages = Object.values(erreur.data.errors).flat().join('\n');
+                messages = useUtilsStores().formatError(erreur?.data?.errors);
+                // messages = Object.values(erreur.data.errors).flat().join('\n');
             }else{
                 messages = erreur.data.message
             }
-
             alert(messages);
             return erreur
         }
-        alert('Votre formulaire a été soumis avec succès.')
-        toast.add({ title: 'Operation completed successfully' })
+        if (response) {
+             alert('Votre formulaire a été soumis avec succès.')
+        // toast.add({ title: 'Operation completed successfully' })
+        }
+       
         return response
     }
 
@@ -405,16 +409,17 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         if (erreur) {
             let messages=""
             if (erreur.data.errors) {
-                messages = Object.values(erreur.data.errors).flat().join('\n');
+                messages = useUtilsStores().formatError(erreur?.data?.errors);
             }else{
                 messages = erreur.data.message
             }
-            
             alert(messages);
             return erreur
         }
-        alert('Votre formulaire a été soumis avec succès.')
-        toast.add({ title: 'Operation completed successfully' })
+        
+        if (response) {
+            alert('Votre formulaire a été soumis avec succès.')
+        }
         return response
     }
 
@@ -422,14 +427,17 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
     async function createOrUpdatePayroll(items:any) {
             
         const { response, erreur } = await employeeService.createOrUpdatePayroll(items);
-        if (erreur) {
-            console.log(erreur?.data?.message);
-            alert(erreur?.data?.message)
-            
-            return erreur
-        }
-        alert('Votre formulaire a été soumis avec succès.')
-        // toast.add({ title: 'Operation completed successfully' })
+      if (erreur) {
+                let errorMessages = useUtilsStores().formatError(erreur?.data?.errors);
+                if (errorMessages) {
+                alert("Please fix the following errors:\n\n" + errorMessages);
+                }else{
+                alert("An error has occurred. If the problem persists, please contact IT support.")
+                }
+            }
+            if (response) {
+                toast.add({ title: 'Operation completed successfully' })
+            }
         return response
     }
 
@@ -448,14 +456,20 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
     }
 
     async function createOrUpdateContract(items:any) {
-            
+            if (!confirm('Are you sure you want to submit?'))  return false
         const { response, erreur } = await employeeService.createOrUpdateContract(items);
         if (erreur) {
-            alert(erreur?.data?.message)
-            return erreur
-        }
-        alert('Votre formulaire a été soumis avec succès.')
-        // toast.add({ title: 'Operation completed successfully' })
+                console.log(erreur?.data?.errors);
+                let errorMessages = useUtilsStores().formatError(erreur?.data?.errors);
+                if (errorMessages) {
+                alert("Please fix the following errors:\n\n" + errorMessages);
+                }else{
+                alert("An error has occurred. If the problem persists, please contact IT support.")
+                }
+            }
+      if (response) {
+                 toast.add({ title: 'Operation completed successfully' })
+            }
         return response
     }
 
@@ -517,7 +531,7 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         }
     }
 
-      async function replicatePosition(uuid:string) {
+    async function replicatePosition(uuid:string) {
             if (!confirm('Are you sure you want to submit this form?')) {
                 return false; 
             }
@@ -594,8 +608,6 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
     }
 
     async function updateEmployee() {
-
-        console.log(updateEmployeeData);
 
         const { response, erreur } = await employeeService.updateEmployee(updateEmployeeData);
         if (!erreur) {

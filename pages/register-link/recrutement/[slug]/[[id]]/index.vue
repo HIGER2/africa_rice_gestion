@@ -232,7 +232,7 @@ onBeforeMount(()=>{
                             </div>
 
                             <!-- If No: Ask where -->
-                            <div  class="mt-3">
+                            <div  class="mt-3" v-if="store.employeePayload.user.family_living_with_staff == 'no'">
                                 <label class="block text-sm text-gray-700 mb-1">If no, where does your family reside?</label>
                                 <input 
                                 placeholder="Where does your family reside?"
@@ -263,7 +263,7 @@ onBeforeMount(()=>{
                             </div>
 
                             <!-- If Yes: Ask institution -->
-                            <div class="mt-3">
+                            <div class="mt-3" v-if="store.employeePayload.user.spouse_works =='yes'">
                                 <label class="block text-sm text-gray-700 mb-1">
                                 If yes, name and address of the institution where he/she works?
                                 </label>
