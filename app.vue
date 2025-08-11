@@ -1,8 +1,10 @@
 <template>
   <div>
     <!-- <NuxtRouteAnnouncer /> -->
-    <NuxtPage/>
-      <UNotifications/>
+      <!-- <UNotifications/> -->
+  <UApp>
+  <NuxtPage />
+  </UApp>
   </div>
 </template>
 

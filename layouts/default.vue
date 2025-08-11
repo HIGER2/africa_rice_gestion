@@ -64,9 +64,9 @@ const setOpen = (state : boolean) => {
 
 <template>
     <main>
-            <nav class="navbar z-50 border-b border-zinc-200  sticky flex top-0 py-3 items-center justify-between w-full  px-4 bg-white ">
+            <nav class="navbar bg-white z-50 border-b border-zinc-200  sticky flex top-0 py-2  items-center justify-between w-full  px-4 ">
                 <div class="itemlef">
-                     <div class="logo">
+                    <div class="logo">
                         <img src="~assets/images/logo.webp" alt="">
                     </div>
                 </div>
@@ -74,7 +74,7 @@ const setOpen = (state : boolean) => {
                     <div class="user">
                         <button type="button"
                         @click="setOpen(!isOpen)"
-                        class="flex h-9 hover:border-green-900 transition  border items-center gap-2 px-4 justify-center rounded-full  bg-green-100 p-2 text-xs font-bold text-green-900 transition-all border-transparent"
+                        class="flex h-9 hover:border-green-900   border items-center gap-2 px-4 justify-center rounded-full  bg-green-100 p-2 text-xs font-bold text-green-900 transition-all border-transparent"
                         >
                         <div class="info">
                             <span>Doumaa armand</span>
@@ -149,7 +149,7 @@ const setOpen = (state : boolean) => {
                         </div>
                     </div>
                 </nav> -->
-                <div class="container">
+                <div class="container p-7">
                     <slot />
                 </div>
             </section>
@@ -264,8 +264,7 @@ main{
         // background-color: $white;
         .container{
             width: 100%;
-            padding: 1em;
-           
+    
         }
     }
 }

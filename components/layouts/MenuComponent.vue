@@ -49,10 +49,23 @@
 
 const menuItems = [
   {
+    label: 'Personnel management',
+    icon:"uil uil-book-reader",
+    children: [
+      { label: 'staff management', 
+      icon:"uil uil-users-alt",
+      link: '/account/staff-manager/staff' },
+      // { label: 'Modifier infos par domaine', link: '/personnel/modifier' },
+      // { label: 'Historique et synthèse', link: '/personnel/synthese' },
+      { label: 'Rapport', link: '#' ,icon:"uil uil-create-dashboard" },
+      // { label: 'Rapports statistiques', link: '/personnel/rapports' },
+    ]
+  },
+  {
     label: 'Recrutement',
     icon:"uil uil-newspaper",
     children: [
-      { label: 'Gestion  dossier', link: '#' ,icon:"uil uil-create-dashboard" },
+      { label: 'Job management', link: '/account/recrutement/post-manager' ,icon:"uil uil-create-dashboard" },
       { label: 'Panélistes', link: '#' ,icon:"uil uil-create-dashboard" },
       { label: 'Rapport', link: '#',icon:"uil uil-create-dashboard"  },
       // { label: 'Programmation entretiens', link: '/recrutement/doodle' },
@@ -79,17 +92,7 @@ const menuItems = [
   //     { label: 'Classement final', link: '/candidatures/classement' },
   //   ]
   // },
-  {
-    label: 'Gestion du personnel',
-    icon:"uil uil-book-reader",
-    children: [
-      { label: 'Gestion collaborateur', link: '#' },
-      // { label: 'Modifier infos par domaine', link: '/personnel/modifier' },
-      // { label: 'Historique et synthèse', link: '/personnel/synthese' },
-      { label: 'Rapport', link: '#' ,icon:"uil uil-create-dashboard" },
-      // { label: 'Rapports statistiques', link: '/personnel/rapports' },
-    ]
-  },
+  
   {
     label: 'Contrat & Administration',
     icon:"uil uil-file-contract",
@@ -144,7 +147,7 @@ const toggle = (index: number) => {
         >
           <NuxtLink
             :to="child.link"
-            class="flex gap-1 text-[13px]  text-gray-600  text-sm hover:text-black hover:font-medium transition px-2 py-1 rounded hover:bg-gray-100"
+            class="flex gap-1 text-[13px]  text-gray-600  text-sm hover:text-black hover:font-medium transition px-2 py-2 rounded hover:bg-gray-100"
           >
            <i :class="child.icon"></i>
            <span> {{ child.label }}</span>

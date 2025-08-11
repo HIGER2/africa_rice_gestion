@@ -34,11 +34,13 @@ const handleLogin = async () => {
                             placeholder="password"
                             v-model="credential.password"
                             />
+                          <div class="w-full mt-3">
                             <UiButtonSubmit
-                            type="submit"
-                           label="Login"
-                           :is-loading="isLoading"
-                           />
+                              type="submit"
+                            label="Login"
+                            :is-loading="isLoading"
+                            />
+                          </div>
                     </form>
                     <span class="text-center text-zinc-500 text-sm">Please log in with your Mycareer Africarice credentials.</span>
                 </div>

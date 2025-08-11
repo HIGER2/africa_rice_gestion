@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
   router: {
     options: {
-       hashMode: true,
+      //  hashMode: true,
       scrollBehaviorType: 'smooth'
 
     }
@@ -51,6 +51,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@pinia/nuxt'],
+  ui: {
+    fonts: false,
+    colorMode: false
+  },
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },
