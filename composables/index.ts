@@ -1,6 +1,7 @@
 import { UpdateEmployee,Employee,UserConnected } from './models/employee';
 export type{ EmployeeType,NewEmployeeType,UpdateEmployeeType ,SettingType,StepType,UserConnectedType} from './types/models';
 export type { ApiResponse, ApiError, UseFetchingParams } from "./types/hooks"
+export { useUtilsStores } from './utils';
 
 
 
