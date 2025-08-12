@@ -1,0 +1,1 @@
+import{_ as o}from"./BTpMgaS3.js";import{f as n,n as t,c as a,b as c,o as _}from"./ohOm73aH.js";const i=n({__name:"index",setup(r){return t("account/home"),(s,m)=>{const e=o;return _(),a("div",null,[c(e)])}}});export{i as default};
