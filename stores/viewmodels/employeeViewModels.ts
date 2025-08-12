@@ -358,8 +358,6 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
     const newEmployee = reactive<NewEmployeeType>({...NewEmployeeType});
     const updateEmployeeData = reactive<UpdateEmployeeType>({...UpdateEmployeeInitial});
 
-
-
     async function createEmployee() {
         const { response, erreur } = await employeeService.createEmployee(newEmployee);
         if (!erreur) {
@@ -543,6 +541,17 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         }
     }
 
+    async function importEmployee(items: Array<string>) {
+        const { response, erreur } = await employeeService.importEmployee(items);
+        if (!erreur) {
+            employee.value = response
+        }else{
+            alert(erreur.data.message)
+        }
+
+        return  { response, erreur }
+    }
+
     async function getAllEmployee() {
         const { response, erreur } = await employeeService.getAllEmployee();
         if (!erreur) {
@@ -649,6 +658,7 @@ export const useEmployeeViewModel = defineStore('EmployeeViewModel', () => {
         findByLink,
         updateEmployeeByLink,
         assignPostToEmployee,
-        replicatePosition
+        replicatePosition,
+        importEmployee
     }
 })

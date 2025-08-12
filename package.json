@@ -26,7 +26,7 @@
     "tailwindcss": "^4.1.11",
     "vue": "latest",
     "vue-router": "latest",
-    "xlsx": "^0.18.5"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

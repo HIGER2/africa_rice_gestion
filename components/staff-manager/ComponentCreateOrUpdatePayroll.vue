@@ -33,7 +33,7 @@ const handelAction=async()=>{
                     :key="index"
                     class="flex items-end gap-2"
                   >
-                   <template  v-for="(input, i) in pair" :key="input.key">
+                  <template  v-for="(input, i) in pair" :key="input.key">
                     <UiBaseSelect
                     v-if="input.component === 'select'"
                     :label="input.label"

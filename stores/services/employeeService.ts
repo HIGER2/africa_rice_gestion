@@ -70,6 +70,26 @@ export const  useEmployeeService = defineStore('employeeService', () => {
         // return new Task(response.data);
     }
 
+    async function importEmployee(item: Array<string>) {
+            let response: any | null = null;
+                let erreur: any | null = null;  
+                await useFetching({
+                    uri: `/employee/import`,
+                    methods: 'POST',
+                    body: item,
+                    success: async (res) => {
+                        response = res.response
+                    },
+                    error: (err) => {
+                        erreur = err
+                    }
+                })
+                return {
+                    response,
+                    erreur
+            }
+    }
+
     async function approuvedEmployeeDraft(uuid: string) {
             let response: any | null = null;
                 let erreur: any | null = null;  
@@ -320,6 +340,7 @@ export const  useEmployeeService = defineStore('employeeService', () => {
         findByLink,
         updateEmployeeByLink,
         assignPostToEmployee,
-        replicatePosition
+        replicatePosition,
+        importEmployee
     }
 })

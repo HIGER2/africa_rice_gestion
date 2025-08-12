@@ -1,0 +1,1 @@
+import{_ as e}from"./BTpMgaS3.js";import{f as t,n,c as a,o as c,b as _}from"./ohOm73aH.js";const i=t({__name:"index",setup(r){return n("account/rapport"),(p,s)=>{const o=e;return c(),a("div",null,[_(o)])}}});export{i as default};
